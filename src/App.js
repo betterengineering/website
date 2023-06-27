@@ -9,9 +9,9 @@ import { colors } from './colors';
 
 function App() {
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: colors.darkBlue }}>
+    <Box sx={{ flexGrow: 1, backgroundColor: colors.darkBlue, height: '100vh', width: '100%' }}>
       <Header />
-      <Container>
+      <Container sx={{ height: '100%', width: '100%' }}>
         <Generative />
       </Container>
     </Box>

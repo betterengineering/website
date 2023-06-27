@@ -6,6 +6,9 @@ import '@fontsource/cutive-mono';
 // A custom theme for this app
 const theme = createTheme({
     palette: {
+        background: {
+            default: '#00203F',
+        },
         primary: {
             main: '#556cd6',
         },
