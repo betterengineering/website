@@ -13,10 +13,10 @@ function Generative() {
 
     useEffect(() => {
         const sketch = (p5, canvasParentRef) => {
+
             p5.setup = () => {
                 const width = containerRef.current.clientWidth;
                 const height = containerRef.current.clientHeight * 0.8;
-
                 const cnv = p5.createCanvas(width, height);
                 cnv.parent(canvasParentRef);
 
@@ -44,7 +44,6 @@ function Generative() {
                     lines.push(line);
                 }
 
-
                 //draw
                 for (let i = 5; i < lines.length; i++) {
                     p5.beginShape();
@@ -55,6 +54,7 @@ function Generative() {
                         p5.fill(r, g, b);
                         p5.curveVertex(lines[i][j + 1].x, lines[i][j + 1].y)
                     }
+
                     p5.endShape();
                 }
             };
@@ -62,6 +62,18 @@ function Generative() {
             p5.windowResized = () => {
                 const width = containerRef.current.clientWidth;
                 const height = containerRef.current.clientHeight * 0.8;
+
+                p5.resizeCanvas(width, height);
+            }
+
+            p5.mouseMoved = () => {
+                const width = containerRef.current.clientWidth;
+                const height = containerRef.current.clientHeight * 0.8;
+
+                // If we're out of bounds, do nothing.
+                if (p5.mouseX < 0 || p5.mouseX > width || p5.mouseY < 0 || p5.mouseY > height) {
+                    return;
+                }
 
                 p5.resizeCanvas(width, height);
             }
