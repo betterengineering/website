@@ -21,3 +21,8 @@ h1 {
   margin: 100px;
   color: #A9FBD7;
 }
+
+noscript {
+  color: #A9FBD7;
+  background-color: #00203F;
+}
