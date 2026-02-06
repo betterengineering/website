@@ -115,7 +115,14 @@ function Resume() {
                 <Divider sx={dividerSx} />
 
                 <Section title="Experience">
-                    <Job title="Founding Software Engineer" company="Tidbyt" date="Jun 2021 – Present">
+                    <Job title="Senior Software Engineer" company="Datadog" date="Dec 2024 – Present">
+                        <Bullet>Currently working on APM onboarding through Single Step Instrumentation.</Bullet>
+                    </Job>
+
+                    <Job title="Senior Software Engineer" company="Squarespace" date="Oct 2023 – Dec 2024">
+                    </Job>
+
+                    <Job title="Founding Software Engineer" company="Tidbyt" date="Jun 2021 – Oct 2023">
                         <Bullet>Collaborated closely with company founders in all aspects of bringing the Tidbyt product to market. Responsibilities included product development, sourcing materials, documentation writing, customer support, load testing, troubleshooting, performance monitoring, and manufacturing process optimization.</Bullet>
                         <Bullet>Partnered with company founders in strategic business planning, setting ambitious goals, and successfully converting these objectives into tangible engineering outcomes.</Bullet>
                         <Bullet>Initiated and nourished a dynamic developer community, growing it from 0 to over 2,000 members. Facilitated the development of an open-source app platform with 400+ community-contributed apps. Implemented effective engagement strategies, created comprehensive documentation, and developed custom developer tools and CI pipelines to support community growth.</Bullet>
