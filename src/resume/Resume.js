@@ -165,9 +165,7 @@ function Resume() {
 
                     <Company name="Facebook" href="https://about.meta.com" date="Nov 2019 – Jun 2021">
                         <Role title="Production Engineer, Artificial Intelligence">
-                            <Bullet>Supported the development of a cutting-edge machine learning stack on custom hardware, guiding it through numerous release milestones. Contributions included advising on release engineering, providing guidance on binary separation, establishing a Service Level Objective (SLO), formulating escalation policies, setting code quality standards, defining on-call expectations, developing comprehensive runbooks, and refining the severity (SEV) incident creation process.</Bullet>
-                            <Bullet>Collaborated with a Machine Learning framework product team to boost developer productivity by addressing entrenched code health challenges. Initiatives included reducing overlooked PR failures, modernizing dependency management, streamlining redundant tests, enhancing build speed, optimizing target determination, among other efficiency improvements.</Bullet>
-                            <SubBullet>The implemented solutions necessitated a hybrid approach, where technical advancements fostered cultural shifts in a self-perpetuating manner.</SubBullet>
+                            <Bullet>I worked on AI infrastructure, mostly focused on release engineering. I optimized the build speed, stabilized the test suites, and facilitated independent binary releases.</Bullet>
                         </Role>
                     </Company>
 
