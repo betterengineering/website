@@ -36,6 +36,11 @@ const bulletSx = {
     mb: 0.5,
 };
 
+const subBulletSx = {
+    ...bulletSx,
+    pl: 4,
+};
+
 const dividerSx = {
     borderColor: colors.teal,
     opacity: 0.2,
@@ -58,7 +63,7 @@ function Job({ title, company, date, children }) {
                 <Typography sx={jobTitleSx}>{title}</Typography>
                 <Typography sx={companySx}>{date}</Typography>
             </Box>
-            <Typography sx={{ ...companySx, mb: 1 }}>{company}</Typography>
+            {company && <Typography sx={{ ...companySx, mb: 1 }}>{company}</Typography>}
             {children}
         </Box>
     );
@@ -67,6 +72,14 @@ function Job({ title, company, date, children }) {
 function Bullet({ children }) {
     return (
         <Typography sx={bulletSx}>
+            {'> '}{children}
+        </Typography>
+    );
+}
+
+function SubBullet({ children }) {
+    return (
+        <Typography sx={subBulletSx}>
             {'> '}{children}
         </Typography>
     );
@@ -102,59 +115,57 @@ function Resume() {
                 <Divider sx={dividerSx} />
 
                 <Section title="Experience">
-                    <Job title="Software Engineer" company="Datadog" date="Current">
+                    <Job title="Founding Software Engineer" company="Tidbyt" date="Jun 2021 – Present">
+                        <Bullet>Collaborated closely with company founders in all aspects of bringing the Tidbyt product to market. Responsibilities included product development, sourcing materials, documentation writing, customer support, load testing, troubleshooting, performance monitoring, and manufacturing process optimization.</Bullet>
+                        <Bullet>Partnered with company founders in strategic business planning, setting ambitious goals, and successfully converting these objectives into tangible engineering outcomes.</Bullet>
+                        <Bullet>Initiated and nourished a dynamic developer community, growing it from 0 to over 2,000 members. Facilitated the development of an open-source app platform with 400+ community-contributed apps. Implemented effective engagement strategies, created comprehensive documentation, and developed custom developer tools and CI pipelines to support community growth.</Bullet>
+                        <Bullet>Significantly enhanced the core product by introducing an app store, establishing integrations with Google Home and Zapier, implementing app features like mute/pin, and forging custom features for partnerships with Shopify and the New York Mets.</Bullet>
+                        <Bullet>Expanded our backend infrastructure to support growth from 10 to 35,000 devices. Led the migration from Google Cloud IoT Core to a custom MQTT setup, while developing monitoring tools, alerts, and dashboards.</Bullet>
                     </Job>
 
-                    <Job title="Founding Engineer" company="Tidbyt" date="">
-                        <Bullet>Worked across the entire software stack spanning backend, frontend, mobile, and embedded engineering</Bullet>
+                    <Job title="Production Engineer, Artificial Intelligence" company="Facebook" date="Nov 2019 – Jun 2021">
+                        <Bullet>Supported the development of a cutting-edge machine learning stack on custom hardware, guiding it through numerous release milestones. Contributions included advising on release engineering, providing guidance on binary separation, establishing a Service Level Objective (SLO), formulating escalation policies, setting code quality standards, defining on-call expectations, developing comprehensive runbooks, and refining the severity (SEV) incident creation process.</Bullet>
+                        <Bullet>Collaborated with a Machine Learning framework product team to boost developer productivity by addressing entrenched code health challenges. Initiatives included reducing overlooked PR failures, modernizing dependency management, streamlining redundant tests, enhancing build speed, optimizing target determination, among other efficiency improvements.</Bullet>
+                        <SubBullet>The implemented solutions necessitated a hybrid approach, where technical advancements fostered cultural shifts in a self-perpetuating manner.</SubBullet>
                     </Job>
 
-                    <Job title="Software Engineer" company="Facebook" date="">
-                        <Bullet>Supported AI infrastructure that enabled training ML models for personalization tasks across Ads, Instagram, Search, and Feed</Bullet>
-                        <Bullet>Enabled package separation for DPER on PyTorch through a release design and implementation</Bullet>
-                        <Bullet>Led the collaboration on the initial direction and wrote an RFC, then led the delivery of the first phase of implementation and ongoing improvements across 7 teams</Bullet>
-                        <Bullet>Established operational excellence best practices by establishing an SLO, creating escalation policies, defining on-call expectations, creating runbooks, and refining the SEV creation process</Bullet>
+                    <Job title="Senior Software Engineer, Backend" company="Squarespace" date="Jan 2019 – Nov 2019">
+                        <Bullet>Spearheaded the division of the monolithic frontend from the backend:</Bullet>
+                        <SubBullet>Conducted the migration of the static asset origin to Google Cloud Storage.</SubBullet>
+                        <SubBullet>Optimized build times, reducing them from 25 to 12 minutes.</SubBullet>
+                        <SubBullet>Facilitated independent building and deploying of the two components.</SubBullet>
+                        <SubBullet>Pioneered the implementation of hot reloads for new frontend versions.</SubBullet>
+                        <Bullet>Championed the migration of the monolithic CMS platform to Kubernetes:</Bullet>
+                        <SubBullet>Collaborated with 7+ teams across multiple quarters, ensuring a coordinated approach.</SubBullet>
+                        <SubBullet>Streamlined production deployment times, reducing them from 50 minutes to just 6.</SubBullet>
+                        <SubBullet>Expedited new instance creation from 2 hours to a swift 1.5 minutes, improving efficiency.</SubBullet>
                     </Job>
 
-                    <Job title="Software Engineer" company="Squarespace" date="">
-                        <Bullet>Engineered a caching solution on a small team to support significantly higher than normal traffic for the Super Bowl 2018 commercial starring Keanu Reeves</Bullet>
-                        <Bullet>Proved viability of the Kubernetes platform by migrating Squarespace's first microservice to Kubernetes</Bullet>
-                        <Bullet>Increased developer efficiency by introducing an open source, containerized CI/CD system</Bullet>
-                    </Job>
-                </Section>
-
-                <Divider sx={dividerSx} />
-
-                <Section title="Projects">
-                    <Job title="Keyless Entry System" company="" date="">
-                        <Bullet>Built a keyless entry system for contactless key cards using custom printed circuit boards, 3D models, and controller software in Go</Bullet>
+                    <Job title="Software Engineer, Backend" company="Squarespace" date="Mar 2018 – Jan 2019">
+                        <Bullet>Led the transition of core CMS monolith's metrics and alerting systems to Prometheus and Alertmanager, enhancing performance tracking and alert responsiveness.</Bullet>
+                        <Bullet>Replaced rigid, hard-coded configuration classes with a more flexible and maintainable file-based system.</Bullet>
+                        <Bullet>Expertly triaged, diagnosed, and resolved a multitude of production outages for the core CMS platform, ensuring optimal uptime and user experience.</Bullet>
                     </Job>
 
-                    <Job title="Electronic Cold Brewer" company="" date="">
-                        <Bullet>Converted a Kyoto cold brew tower into an electronic cold brewer controllable through the browser using a custom 3D printed mount, peristaltic pump, Go backend, and Vue.js frontend</Bullet>
+                    <Job title="Site Reliability Engineer" company="Squarespace" date="Jun 2016 – Mar 2018">
+                        <Bullet>Engaged in a critical on-call rotation for Squarespace, providing robust support for monolith and microservices as well as their downstream dependencies.</Bullet>
+                        <Bullet>Conducted over 50 comprehensive interviews for Site Reliability Engineering roles, involving both initial phone screens and on-site interviews.</Bullet>
+                        <Bullet>Contributed significantly to a specialized team responsible for constructing caching layers for the high-profile Super Bowl 2018 commercial featuring Keanu Reeves.</Bullet>
+                        <Bullet>Spearheaded the migration of Squarespace's inaugural microservice to Kubernetes, enhancing overall service efficiency and scalability.</Bullet>
+                        <Bullet>Initiated and implemented a containerized CI/CD system, promoting the concept of 'build as code' through open-source solutions.</Bullet>
                     </Job>
-                </Section>
 
-                <Divider sx={dividerSx} />
-
-                <Section title="Open Source">
-                    <Box sx={{ mb: 1 }}>
-                        <Bullet>
-                            <Link href="https://github.com/tidbyt/pixlet" target="_blank" rel="noopener" sx={{ color: colors.teal }}>tidbyt/pixlet</Link> — Build apps for pixel-based displays (Go)
-                        </Bullet>
-                        <Bullet>
-                            <Link href="https://github.com/tidbyt/community" target="_blank" rel="noopener" sx={{ color: colors.teal }}>tidbyt/community</Link> — Publishing platform for Tidbyt community apps (Starlark)
-                        </Bullet>
-                        <Bullet>
-                            <Link href="https://github.com/Roastero/Openroast" target="_blank" rel="noopener" sx={{ color: colors.teal }}>Roastero/Openroast</Link> — Open source application for home coffee roasting (Python)
-                        </Bullet>
-                    </Box>
+                    <Job title="Site Reliability Engineering Intern" company="Spotify" date="Jun 2015 – Aug 2015">
+                        <Bullet>Constructed a proof of concept for an automated remediation framework aimed at optimizing bare metal host systems.</Bullet>
+                    </Job>
                 </Section>
 
                 <Divider sx={dividerSx} />
 
                 <Section title="Education">
-                    <Typography sx={jobTitleSx}>Rochester Institute of Technology</Typography>
+                    <Job title="Rochester Institute of Technology" company="Bachelor of Science" date="Aug 2012 – May 2016">
+                        <Bullet>Double major in Networking and Systems Administration and Computing Security</Bullet>
+                    </Job>
                 </Section>
             </Container>
         </Box>
