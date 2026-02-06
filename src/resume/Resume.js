@@ -136,9 +136,9 @@ function Resume() {
 
                 <Divider sx={dividerSx} />
 
-                <Section title="Overview">
+                <Section title="Introduction">
                     <Typography sx={{ color: colors.teal, opacity: 0.85, fontSize: '0.9rem', lineHeight: 1.7 }}>
-                        I have a decade of software experience and take pride in being a generalist. I've held roles building product, platform, and infrastructure which gives me a deep understanding of what it takes to build great software. I've worked at companies ranging from 3 to 30,000 engineers and feel comfortable operating anywhere in between.
+                        I have a decade of software experience and take pride in being a generalist. I've held roles building product, platforms, and infrastructure which gives me a deep understanding of what it takes to build great software. I've worked at companies ranging from 3 to 30,000 engineers and feel comfortable operating anywhere in between.
                     </Typography>
                 </Section>
 
@@ -147,12 +147,13 @@ function Resume() {
                 <Section title="Experience">
                     <Company name="Datadog" href="https://www.datadoghq.com" date="Dec 2024 – Present">
                         <Role title="Senior Software Engineer">
-                            <Bullet>Currently working on APM onboarding through Single Step Instrumentation.</Bullet>
+                            <Bullet>Currently working on APM Onboarding through <Link href="https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/single-step-apm/kubernetes" target="_blank" rel="noopener" sx={{ color: colors.teal }}>Single Step Instrumentation</Link>.</Bullet>
                         </Role>
                     </Company>
 
                     <Company name="Squarespace" href="https://www.squarespace.com" date="Oct 2023 – Dec 2024">
                         <Role title="Senior Software Engineer">
+                            <Bullet>Worked on the website product. Rebuilt the Squarespace <Link href="https://developers.squarespace.com/quick-start" target="_blank" rel="noopener" sx={{ color: colors.teal }}>developer mode</Link> feature using GitHub. Met with our customers regularly to help them migrate to the new feature.</Bullet>
                         </Role>
                     </Company>
 
