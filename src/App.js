@@ -1,11 +1,33 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
 import Generative from './generative/Generative';
 import Header from './header/Header';
+import Resume from './resume/Resume';
 import { colors } from './colors';
+
+function Home() {
+  return (
+    <Box sx={{ flexGrow: 1, backgroundColor: colors.darkBlue, height: window.innerHeight, width: 1 }}>
+      <Header />
+      <Container sx={{ height: 1, width: 1 }}>
+        <Generative />
+      </Container>
+    </Box>
+  );
+}
+
+function ResumePage() {
+  return (
+    <Box sx={{ flexGrow: 1, backgroundColor: colors.darkBlue, minHeight: '100vh', width: 1 }}>
+      <Header />
+      <Resume />
+    </Box>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -46,12 +68,12 @@ function App() {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1, backgroundColor: colors.darkBlue, height: window.innerHeight, width: 1 }}>
-      <Header />
-      <Container sx={{ height: 1, width: 1 }}>
-        <Generative />
-      </Container>
-    </Box>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/resume" element={<ResumePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

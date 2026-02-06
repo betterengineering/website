@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,7 +18,16 @@ function Header() {
     return (
         <AppBar elevation={0} position="fixed" color="transparent">
             <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: colors.teal }}>
+                <Typography
+                    variant="h6"
+                    component={RouterLink}
+                    to="/"
+                    sx={{
+                        flexGrow: 1,
+                        color: colors.teal,
+                        textDecoration: 'none',
+                    }}
+                >
                     Mark Spicer
                 </Typography>
                 <Box sx={{ flexGrow: 1 }} />
@@ -25,7 +35,8 @@ function Header() {
                     <IconButton
                         size="large"
                         edge="end"
-                        href="https://betterengineering.notion.site/betterengineering/Mark-Spicer-aa37072963ce46a583b477aeca9ef73b"
+                        component={RouterLink}
+                        to="/resume"
                         style={{ color: colors.teal }}
                     >
                         <Assignment />
