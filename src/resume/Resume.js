@@ -63,11 +63,15 @@ function Section({ title, children }) {
     );
 }
 
-function Company({ name, date, children }) {
+function Company({ name, href, date, children }) {
     return (
         <Box sx={{ mb: 3 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap' }}>
-                <Typography sx={companyNameSx}>{name}</Typography>
+                {href ? (
+                    <Link href={href} target="_blank" rel="noopener" sx={{ ...companyNameSx, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>{name}</Link>
+                ) : (
+                    <Typography sx={companyNameSx}>{name}</Typography>
+                )}
                 <Typography sx={dateSx}>{date}</Typography>
             </Box>
             {children}
@@ -132,19 +136,27 @@ function Resume() {
 
                 <Divider sx={dividerSx} />
 
+                <Section title="Overview">
+                    <Typography sx={{ color: colors.teal, opacity: 0.85, fontSize: '0.9rem', lineHeight: 1.7 }}>
+                        I have a decade of software experience and take pride in being a generalist. I've held roles building product, platform, and infrastructure which gives me a deep understanding of what it takes to build great software. I've worked at companies ranging from 3 to 30,000 engineers and feel comfortable operating anywhere in between.
+                    </Typography>
+                </Section>
+
+                <Divider sx={dividerSx} />
+
                 <Section title="Experience">
-                    <Company name="Datadog" date="Dec 2024 – Present">
+                    <Company name="Datadog" href="https://www.datadoghq.com" date="Dec 2024 – Present">
                         <Role title="Senior Software Engineer">
                             <Bullet>Currently working on APM onboarding through Single Step Instrumentation.</Bullet>
                         </Role>
                     </Company>
 
-                    <Company name="Squarespace" date="Oct 2023 – Dec 2024">
+                    <Company name="Squarespace" href="https://www.squarespace.com" date="Oct 2023 – Dec 2024">
                         <Role title="Senior Software Engineer">
                         </Role>
                     </Company>
 
-                    <Company name="Tidbyt" date="Jun 2021 – Oct 2023">
+                    <Company name="Tidbyt" href="https://tidbyt.com" date="Jun 2021 – Oct 2023">
                         <Role title="Founding Software Engineer">
                             <Bullet>Collaborated closely with company founders in all aspects of bringing the Tidbyt product to market. Responsibilities included product development, sourcing materials, documentation writing, customer support, load testing, troubleshooting, performance monitoring, and manufacturing process optimization.</Bullet>
                             <Bullet>Partnered with company founders in strategic business planning, setting ambitious goals, and successfully converting these objectives into tangible engineering outcomes.</Bullet>
@@ -154,7 +166,7 @@ function Resume() {
                         </Role>
                     </Company>
 
-                    <Company name="Facebook" date="Nov 2019 – Jun 2021">
+                    <Company name="Facebook" href="https://about.meta.com" date="Nov 2019 – Jun 2021">
                         <Role title="Production Engineer, Artificial Intelligence">
                             <Bullet>Supported the development of a cutting-edge machine learning stack on custom hardware, guiding it through numerous release milestones. Contributions included advising on release engineering, providing guidance on binary separation, establishing a Service Level Objective (SLO), formulating escalation policies, setting code quality standards, defining on-call expectations, developing comprehensive runbooks, and refining the severity (SEV) incident creation process.</Bullet>
                             <Bullet>Collaborated with a Machine Learning framework product team to boost developer productivity by addressing entrenched code health challenges. Initiatives included reducing overlooked PR failures, modernizing dependency management, streamlining redundant tests, enhancing build speed, optimizing target determination, among other efficiency improvements.</Bullet>
@@ -162,7 +174,7 @@ function Resume() {
                         </Role>
                     </Company>
 
-                    <Company name="Squarespace" date="Jun 2016 – Nov 2019">
+                    <Company name="Squarespace" href="https://www.squarespace.com" date="Jun 2016 – Nov 2019">
                         <Role title="Senior Software Engineer, Backend" date="Jan 2019 – Nov 2019">
                             <Bullet>Spearheaded the division of the monolithic frontend from the backend:</Bullet>
                             <SubBullet>Conducted the migration of the static asset origin to Google Cloud Storage.</SubBullet>
@@ -188,7 +200,7 @@ function Resume() {
                         </Role>
                     </Company>
 
-                    <Company name="Spotify" date="Jun 2015 – Aug 2015">
+                    <Company name="Spotify" href="https://www.spotify.com" date="Jun 2015 – Aug 2015">
                         <Role title="Site Reliability Engineering Intern">
                             <Bullet>Constructed a proof of concept for an automated remediation framework aimed at optimizing bare metal host systems.</Bullet>
                         </Role>
@@ -198,7 +210,7 @@ function Resume() {
                 <Divider sx={dividerSx} />
 
                 <Section title="Education">
-                    <Company name="Rochester Institute of Technology" date="Aug 2012 – May 2016">
+                    <Company name="Rochester Institute of Technology" href="https://www.rit.edu" date="Aug 2012 – May 2016">
                         <Role title="Bachelor of Science">
                             <Bullet>Double major in Networking and Systems Administration and Computing Security</Bullet>
                         </Role>
