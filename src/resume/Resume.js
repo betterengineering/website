@@ -159,11 +159,7 @@ function Resume() {
 
                     <Company name="Tidbyt" href="https://tidbyt.com" date="Jun 2021 – Oct 2023">
                         <Role title="Founding Software Engineer">
-                            <Bullet>Collaborated closely with company founders in all aspects of bringing the Tidbyt product to market. Responsibilities included product development, sourcing materials, documentation writing, customer support, load testing, troubleshooting, performance monitoring, and manufacturing process optimization.</Bullet>
-                            <Bullet>Partnered with company founders in strategic business planning, setting ambitious goals, and successfully converting these objectives into tangible engineering outcomes.</Bullet>
-                            <Bullet>Initiated and nourished a dynamic developer community, growing it from 0 to over 2,000 members. Facilitated the development of an open-source app platform with 400+ community-contributed apps. Implemented effective engagement strategies, created comprehensive documentation, and developed custom developer tools and CI pipelines to support community growth.</Bullet>
-                            <Bullet>Significantly enhanced the core product by introducing an app store, establishing integrations with Google Home and Zapier, implementing app features like mute/pin, and forging custom features for partnerships with Shopify and the New York Mets.</Bullet>
-                            <Bullet>Expanded our backend infrastructure to support growth from 10 to 35,000 devices. Led the migration from Google Cloud IoT Core to a custom MQTT setup, while developing monitoring tools, alerts, and dashboards.</Bullet>
+                            <Bullet>I worked in a team of four to bring the <Link href="https://tidbyt.com/products/tidbyt" target="_blank" rel="noopener" sx={{ color: colors.teal }}>Tidbyt product</Link> to market and scale adoption to 35,000 devices. I did a little bit of everything, including customer support, marketing, business forecasting, building major features, sourcing screws, and scaling our backend.</Bullet>
                         </Role>
                     </Company>
 
