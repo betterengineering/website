@@ -159,7 +159,7 @@ function Resume() {
 
                     <Company name="Tidbyt" href="https://tidbyt.com" date="Jun 2021 – Oct 2023">
                         <Role title="Founding Software Engineer">
-                            <Bullet>I worked in a team of four to bring the <Link href="https://tidbyt.com/products/tidbyt" target="_blank" rel="noopener" sx={{ color: colors.teal }}>Tidbyt product</Link> to market and scale adoption to 35,000 devices. I did a little bit of everything, including customer support, marketing, business forecasting, building major features, sourcing screws, and scaling our backend.</Bullet>
+                            <Bullet>I worked in a team of four to bring the <Link href="https://tidbyt.com/products/tidbyt" target="_blank" rel="noopener" sx={{ color: colors.teal }}>Tidbyt product</Link> to market and scale adoption to 35,000 devices. I did a little bit of everything, including customer support, marketing, business forecasting, building major features, sourcing screws, scaling our backend, and building a developer community.</Bullet>
                         </Role>
                     </Company>
 
