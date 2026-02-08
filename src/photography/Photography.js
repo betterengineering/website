@@ -33,7 +33,7 @@ const captionSx = {
 
 const frameSx = {
     backgroundColor: colors.white,
-    border: `3px solid ${colors.black}`,
+    border: `5px solid ${colors.black}`,
     boxShadow: '6px 6px 20px rgba(0, 0, 0, 0.3), 2px 2px 6px rgba(0, 0, 0, 0.15)',
     // Matte padding: more on bottom like a real gallery matte
     padding: '24px 24px 32px 24px',
@@ -94,7 +94,7 @@ function Photography() {
             pt: 10,
             pb: 8,
         }}>
-            <Container maxWidth="md">
+            <Container maxWidth="md" sx={{ px: { xs: 3, sm: 3 } }}>
                 <Box sx={{ mb: 1 }}>
                     <Typography sx={{ color: colors.black, fontSize: '2rem', fontWeight: 'bold' }}>
                         Photography
@@ -118,7 +118,7 @@ function Photography() {
                     <Typography sx={sectionHeaderSx}>Gallery</Typography>
                 </Box>
 
-                <Grid container spacing={4}>
+                <Grid container spacing={{ xs: 5, sm: 6 }}>
                     {photos.map((photo, index) => (
                         <Grid size={{ xs: 12, sm: 6 }} key={index}>
                             <PhotoFrame
