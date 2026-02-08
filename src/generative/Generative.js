@@ -7,25 +7,17 @@ const STEP = 16;
 
 const VARIANCE_FACTOR = 100;
 const MONOCHROME = [[0, 32, 63]];
+const LERP_SPEED = 0.02;
 
 function Generative() {
     const containerRef = useRef(null); // create a ref to bind p5 instance to
 
     useEffect(() => {
         const sketch = (p5, canvasParentRef) => {
+            let currentLines = [];
+            let targetLines = [];
 
-            p5.setup = () => {
-                const width = containerRef.current.clientWidth;
-                const height = containerRef.current.clientHeight * 0.8;
-                const cnv = p5.createCanvas(width, height);
-                cnv.parent(canvasParentRef);
-
-                p5.stroke(169, 251, 215);
-                p5.strokeWeight(2);
-                p5.noLoop();
-            };
-
-            p5.draw = () => {
+            function generateLines() {
                 const width = containerRef.current.clientWidth;
                 const height = containerRef.current.clientHeight * 0.8;
                 const maxWidth = 600;
@@ -35,26 +27,61 @@ function Generative() {
                     let line = [];
                     for (let j = STEP; j < width - STEP; j += STEP) {
                         let distanceToCenter = Math.abs(j - width / 2);
-                        let foo = Math.min(width, maxWidth); // I'm not entirely sure what this does, but I liked the look of it.
+                        let foo = Math.min(width, maxWidth);
                         let variance = Math.max(foo / 2 - VARIANCE_FACTOR - distanceToCenter, 0);
                         let random = (Math.random() * variance) / 2 * -1;
                         let point = { x: j, y: i + random };
-                        line.push(point)
+                        line.push(point);
                     }
                     lines.push(line);
                 }
+                return lines;
+            }
 
-                //draw
-                for (let i = 5; i < lines.length; i++) {
+            p5.setup = () => {
+                const width = containerRef.current.clientWidth;
+                const height = containerRef.current.clientHeight * 0.8;
+                const cnv = p5.createCanvas(width, height);
+                cnv.parent(canvasParentRef);
+
+                p5.stroke(169, 251, 215);
+                p5.strokeWeight(2);
+                p5.frameRate(30);
+
+                currentLines = generateLines();
+                targetLines = generateLines();
+            };
+
+            p5.draw = () => {
+                p5.clear();
+
+                // Lerp current points toward their targets
+                let reachedTarget = true;
+                for (let i = 0; i < currentLines.length; i++) {
+                    for (let j = 0; j < currentLines[i].length; j++) {
+                        currentLines[i][j].x = p5.lerp(currentLines[i][j].x, targetLines[i][j].x, LERP_SPEED);
+                        currentLines[i][j].y = p5.lerp(currentLines[i][j].y, targetLines[i][j].y, LERP_SPEED);
+
+                        if (Math.abs(currentLines[i][j].y - targetLines[i][j].y) > 0.5) {
+                            reachedTarget = false;
+                        }
+                    }
+                }
+
+                if (reachedTarget) {
+                    targetLines = generateLines();
+                }
+
+                // Draw
+                for (let i = 5; i < currentLines.length; i++) {
                     p5.beginShape();
-                    for (let j = 0; j < lines[i].length - 1; j += 2) {
-                        p5.curveVertex(lines[i][j].x, lines[i][j].y);
+                    for (let j = 0; j < currentLines[i].length - 1; j += 2) {
+                        p5.curveVertex(currentLines[i][j].x, currentLines[i][j].y);
                         let random_index = Math.floor(Math.random() * MONOCHROME.length);
                         const [r, g, b] = MONOCHROME[random_index];
                         p5.fill(r, g, b);
-                        p5.curveVertex(lines[i][j + 1].x, lines[i][j + 1].y)
+                        p5.curveVertex(currentLines[i][j + 1].x, currentLines[i][j + 1].y);
                     }
-
                     p5.endShape();
                 }
             };
@@ -64,19 +91,9 @@ function Generative() {
                 const height = containerRef.current.clientHeight * 0.8;
 
                 p5.resizeCanvas(width, height);
-            }
-
-            p5.mouseMoved = () => {
-                const width = containerRef.current.clientWidth;
-                const height = containerRef.current.clientHeight * 0.8;
-
-                // If we're out of bounds, do nothing.
-                if (p5.mouseX < 0 || p5.mouseX > width || p5.mouseY < 0 || p5.mouseY > height) {
-                    return;
-                }
-
-                p5.resizeCanvas(width, height);
-            }
+                currentLines = generateLines();
+                targetLines = generateLines();
+            };
         };
 
         const p5Instance = new P5(sketch, containerRef.current);
