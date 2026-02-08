@@ -31,7 +31,7 @@ function Header() {
                     Mark Spicer
                 </Typography>
                 <Box sx={{ flexGrow: 1 }} />
-                <Tooltip title="Resume" placement="bottom" disableTouchListener>
+                <Tooltip title="Resume" placement="bottom" disableTouchListener disableFocusListener>
                     <IconButton
                         size="large"
                         edge="end"
@@ -42,7 +42,7 @@ function Header() {
                         <Assignment />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title="LinkedIn Profile" placement="bottom" disableTouchListener>
+                <Tooltip title="LinkedIn Profile" placement="bottom" disableTouchListener disableFocusListener>
                     <IconButton
                         size="large"
                         edge="end"
@@ -52,7 +52,7 @@ function Header() {
                         <LinkedIn />
                     </IconButton>
                 </Tooltip>
-                <Tooltip title="GitHub Profile" placement="bottom" disableTouchListener>
+                <Tooltip title="GitHub Profile" placement="bottom" disableTouchListener disableFocusListener>
                     <IconButton
                         size="large"
                         edge="end"
