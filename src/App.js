@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Generative from './generative/Generative';
 import Header from './header/Header';
 import Resume from './resume/Resume';
+import Photography from './photography/Photography';
 import { colors } from './colors';
 
 function Home() {
@@ -25,6 +26,15 @@ function ResumePage() {
     <Box sx={{ flexGrow: 1, backgroundColor: colors.darkBlue, minHeight: '100vh', width: 1 }}>
       <Header />
       <Resume />
+    </Box>
+  );
+}
+
+function PhotographyPage() {
+  return (
+    <Box sx={{ flexGrow: 1, backgroundColor: colors.white, minHeight: '100vh', width: 1 }}>
+      <Header variant="dark" />
+      <Photography />
     </Box>
   );
 }
@@ -72,6 +82,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/resume" element={<ResumePage />} />
+        <Route path="/photography" element={<PhotographyPage />} />
       </Routes>
     </BrowserRouter>
   );
