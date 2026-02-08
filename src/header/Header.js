@@ -16,7 +16,20 @@ import Tooltip from '@mui/material/Tooltip';
 
 function Header() {
     return (
-        <AppBar elevation={0} position="fixed" sx={{ backgroundColor: colors.darkBlue }}>
+        <AppBar elevation={0} position="fixed" sx={{
+            backgroundColor: colors.darkBlue,
+            '&::after': {
+                content: '""',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '24px',
+                transform: 'translateY(100%)',
+                background: `linear-gradient(to bottom, ${colors.darkBlue}, transparent)`,
+                pointerEvents: 'none',
+            },
+        }}>
             <Toolbar>
                 <Typography
                     variant="h6"
