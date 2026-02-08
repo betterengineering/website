@@ -94,7 +94,7 @@ function Photography() {
             pt: 10,
             pb: 8,
         }}>
-            <Container maxWidth="md" sx={{ px: { xs: 3, sm: 3 } }}>
+            <Container maxWidth="md">
                 <Box sx={{ mb: 1 }}>
                     <Typography sx={{ color: colors.black, fontSize: '2rem', fontWeight: 'bold' }}>
                         Photography
@@ -118,17 +118,19 @@ function Photography() {
                     <Typography sx={sectionHeaderSx}>Gallery</Typography>
                 </Box>
 
-                <Grid container spacing={{ xs: 5, sm: 6 }}>
-                    {photos.map((photo, index) => (
-                        <Grid size={{ xs: 12, sm: 6 }} key={index}>
-                            <PhotoFrame
-                                src={photo.src}
-                                alt={photo.alt}
-                                caption={photo.caption}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
+                <Box sx={{ px: { xs: 1, sm: 0 } }}>
+                    <Grid container spacing={{ xs: 5, sm: 6 }}>
+                        {photos.map((photo, index) => (
+                            <Grid size={{ xs: 12, sm: 6 }} key={index}>
+                                <PhotoFrame
+                                    src={photo.src}
+                                    alt={photo.alt}
+                                    caption={photo.caption}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Box>
             </Container>
         </Box>
     );
