@@ -119,7 +119,7 @@ function Photography() {
                 </Box>
 
                 <Box sx={{ px: { xs: 1, sm: 0 } }}>
-                    <Grid container spacing={{ xs: 5, sm: 6 }}>
+                    <Grid container spacing={{ xs: 5, sm: 6 }} justifyContent="center">
                         {photos.map((photo, index) => (
                             <Grid size={{ xs: 12, sm: 6 }} key={index}>
                                 <PhotoFrame
