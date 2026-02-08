@@ -76,11 +76,11 @@ function Generative() {
                 for (let i = 5; i < currentLines.length; i++) {
                     p5.beginShape();
                     for (let j = 0; j < currentLines[i].length - 1; j += 2) {
-                        p5.curveVertex(currentLines[i][j].x, currentLines[i][j].y);
+                        p5.splineVertex(currentLines[i][j].x, currentLines[i][j].y);
                         let random_index = Math.floor(Math.random() * MONOCHROME.length);
                         const [r, g, b] = MONOCHROME[random_index];
                         p5.fill(r, g, b);
-                        p5.curveVertex(currentLines[i][j + 1].x, currentLines[i][j + 1].y);
+                        p5.splineVertex(currentLines[i][j + 1].x, currentLines[i][j + 1].y);
                     }
                     p5.endShape();
                 }
