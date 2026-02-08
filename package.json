@@ -3,26 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "11.13.3",
-    "@emotion/styled": "11.13.0",
-    "@fontsource/cutive-mono": "5.1.0",
-    "@mui/icons-material": "6.1.2",
-    "@mui/material": "6.1.2",
-    "@testing-library/jest-dom": "6.5.0",
-    "@testing-library/react": "16.0.1",
-    "@testing-library/user-event": "14.5.2",
-    "p5": "1.11.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@fontsource/cutive-mono": "5.2.8",
+    "@mui/icons-material": "7.3.7",
+    "@mui/material": "7.3.7",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "p5": "2.2.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "^7.13.0",
+    "react-router-dom": "7.13.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "4.2.3"
+    "web-vitals": "5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^react-router-dom$": "react-router-dom/dist/index.js",
+      "^react-router$": "react-router/dist/development/index.js",
+      "^react-router/dom$": "react-router/dist/development/dom-export.js",
+      "^p5$": "<rootDir>/src/__mocks__/p5.js"
+    }
   },
   "eslintConfig": {
     "extends": [
