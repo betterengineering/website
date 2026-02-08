@@ -10,7 +10,6 @@ import Assignment from '@mui/icons-material/Assignment';
 import Box from '@mui/material/Box';
 import { LinkedIn } from '@mui/icons-material';
 import { colors } from '../colors';
-import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -31,37 +30,34 @@ function Header() {
                     Mark Spicer
                 </Typography>
                 <Box sx={{ flexGrow: 1 }} />
-                <Tooltip title="Resume" placement="bottom" disableTouchListener disableFocusListener>
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        component={RouterLink}
-                        to="/resume"
-                        style={{ color: colors.teal }}
-                    >
-                        <Assignment />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="LinkedIn Profile" placement="bottom" disableTouchListener disableFocusListener>
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        href="https://www.linkedin.com/in/markspicerjr/"
-                        style={{ color: colors.teal }}
-                    >
-                        <LinkedIn />
-                    </IconButton>
-                </Tooltip>
-                <Tooltip title="GitHub Profile" placement="bottom" disableTouchListener disableFocusListener>
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        href="https://github.com/betterengineering"
-                        style={{ color: colors.teal }}
-                    >
-                        <GitHub />
-                    </IconButton>
-                </Tooltip>
+                <IconButton
+                    size="large"
+                    edge="end"
+                    component={RouterLink}
+                    to="/resume"
+                    aria-label="Resume"
+                    style={{ color: colors.teal }}
+                >
+                    <Assignment />
+                </IconButton>
+                <IconButton
+                    size="large"
+                    edge="end"
+                    href="https://www.linkedin.com/in/markspicerjr/"
+                    aria-label="LinkedIn Profile"
+                    style={{ color: colors.teal }}
+                >
+                    <LinkedIn />
+                </IconButton>
+                <IconButton
+                    size="large"
+                    edge="end"
+                    href="https://github.com/betterengineering"
+                    aria-label="GitHub Profile"
+                    style={{ color: colors.teal }}
+                >
+                    <GitHub />
+                </IconButton>
             </Toolbar>
         </AppBar >
     );
