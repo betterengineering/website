@@ -7,16 +7,21 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import GitHub from '@mui/icons-material/GitHub';
 import Assignment from '@mui/icons-material/Assignment';
+import CameraAlt from '@mui/icons-material/CameraAlt';
 import Box from '@mui/material/Box';
 import { LinkedIn } from '@mui/icons-material';
 import { colors } from '../colors';
 
 
 
-function Header() {
+function Header({ variant }) {
+    const isDark = variant === 'dark';
+    const color = isDark ? colors.black : colors.teal;
+    const bg = isDark ? colors.white : colors.darkBlue;
+
     return (
         <AppBar elevation={0} position="fixed" sx={{
-            backgroundColor: colors.darkBlue,
+            backgroundColor: bg,
             '&::after': {
                 content: '""',
                 position: 'absolute',
@@ -25,7 +30,7 @@ function Header() {
                 right: 0,
                 height: '24px',
                 transform: 'translateY(100%)',
-                background: `linear-gradient(to bottom, ${colors.darkBlue}, transparent)`,
+                background: `linear-gradient(to bottom, ${bg}, transparent)`,
                 pointerEvents: 'none',
             },
         }}>
@@ -36,7 +41,7 @@ function Header() {
                     to="/"
                     sx={{
                         flexGrow: 1,
-                        color: colors.teal,
+                        color: color,
                         textDecoration: 'none',
                     }}
                 >
@@ -49,16 +54,26 @@ function Header() {
                     component={RouterLink}
                     to="/resume"
                     aria-label="Resume"
-                    style={{ color: colors.teal }}
+                    style={{ color: color }}
                 >
                     <Assignment />
                 </IconButton>
                 <IconButton
                     size="large"
                     edge="end"
+                    component={RouterLink}
+                    to="/photography"
+                    aria-label="Photography"
+                    style={{ color: color }}
+                >
+                    <CameraAlt />
+                </IconButton>
+                <IconButton
+                    size="large"
+                    edge="end"
                     href="https://www.linkedin.com/in/markspicerjr/"
                     aria-label="LinkedIn Profile"
-                    style={{ color: colors.teal }}
+                    style={{ color: color }}
                 >
                     <LinkedIn />
                 </IconButton>
@@ -67,7 +82,7 @@ function Header() {
                     edge="end"
                     href="https://github.com/betterengineering"
                     aria-label="GitHub Profile"
-                    style={{ color: colors.teal }}
+                    style={{ color: color }}
                 >
                     <GitHub />
                 </IconButton>
