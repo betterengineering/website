@@ -6,7 +6,7 @@ Personal portfolio website for Mark Spicer, deployed to markspicer.me via Netlif
 
 ## Tech Stack
 
-- **React 18** with Create React App (react-scripts 5.0.1)
+- **React 18** with **Vite** as the build tool
 - **React Router v7** for client-side routing
 - **Material-UI (MUI) v6** for UI components
 - **Emotion** for CSS-in-JS styling (via MUI)
@@ -16,29 +16,33 @@ Personal portfolio website for Mark Spicer, deployed to markspicer.me via Netlif
 ## Commands
 
 ```bash
-bun start      # Dev server on port 3000
+bun dev        # Vite dev server on port 3000
 bun run build  # Production build to /build
+bun run preview # Preview production build locally
 bun test       # Bun native test runner (with happy-dom for DOM support)
 ```
 
-There is no separate lint command; ESLint runs through `react-scripts` (config in `package.json` under `eslintConfig`, extends `react-app` and `react-app/jest`). No Prettier or pre-commit hooks are configured.
+No separate lint command or pre-commit hooks are configured.
 
 ## Directory Structure
 
 ```
+index.html               # HTML shell (includes Heap Analytics)
+vite.config.js           # Vite configuration
+bunfig.toml              # Bun test config (happy-dom preload)
+happydom.js              # happy-dom registration for tests
 src/
-  index.js           # Entry point: ThemeProvider + CssBaseline + App
-  App.js             # Router: / -> Home, /resume -> ResumePage
-  theme.js           # MUI theme (Cutive Mono font, dark blue background)
-  colors.js          # Shared color constants
-  index.css          # Global body styles
-  header/Header.js   # Fixed AppBar with nav links (GitHub, LinkedIn, Resume)
-  generative/Generative.js  # p5.js animated wavy lines canvas
-  resume/Resume.js   # Full resume with Section/Company/Role components
+  index.jsx              # Entry point: ThemeProvider + CssBaseline + App
+  App.jsx                # Router: / -> Home, /resume -> ResumePage
+  theme.js               # MUI theme (Cutive Mono font, dark blue background)
+  colors.js              # Shared color constants
+  index.css              # Global body styles
+  header/Header.jsx      # Fixed AppBar with nav links (GitHub, LinkedIn, Resume)
+  generative/Generative.jsx  # p5.js animated wavy lines canvas
+  resume/Resume.jsx      # Full resume with Section/Company/Role components
 public/
-  _redirects         # Netlify SPA redirect rule
-  index.html         # HTML shell (includes Heap Analytics)
-  sitemap.xml        # SEO sitemap
+  _redirects             # Netlify SPA redirect rule
+  sitemap.xml            # SEO sitemap
 ```
 
 ## Architecture
@@ -53,7 +57,7 @@ public/
 ### Components
 - Function components only (no class components)
 - One component per file, default export
-- Each component directory contains a single `.js` file (no TypeScript)
+- Each component directory contains a single `.jsx` file (no TypeScript)
 - MUI components are imported individually: `import Box from '@mui/material/Box'`
 
 ### Styling
@@ -84,5 +88,5 @@ public/
 - **Framework**: Bun's native test runner (`bun test`)
 - **DOM**: happy-dom via `happydom.js` preload (configured in `bunfig.toml`)
 - **Libraries**: React Testing Library (`@testing-library/react`)
-- **Test files**: Co-located with source (`App.test.js`)
+- **Test files**: Co-located with source (`App.test.jsx`)
 - **Mocking**: Use `mock.module()` from `bun:test` (no `__mocks__` directory)
