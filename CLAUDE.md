@@ -18,7 +18,7 @@ Personal portfolio website for Mark Spicer, deployed to markspicer.me via Netlif
 ```bash
 bun start      # Dev server on port 3000
 bun run build  # Production build to /build
-bun run test   # Jest test runner (watch mode) — use "bun run test" not "bun test"
+bun test       # Bun native test runner (with happy-dom for DOM support)
 ```
 
 There is no separate lint command; ESLint runs through `react-scripts` (config in `package.json` under `eslintConfig`, extends `react-app` and `react-app/jest`). No Prettier or pre-commit hooks are configured.
@@ -81,7 +81,8 @@ public/
 
 ## Testing
 
-- **Framework**: Jest via react-scripts
-- **Libraries**: React Testing Library, jest-dom
+- **Framework**: Bun's native test runner (`bun test`)
+- **DOM**: happy-dom via `happydom.js` preload (configured in `bunfig.toml`)
+- **Libraries**: React Testing Library (`@testing-library/react`)
 - **Test files**: Co-located with source (`App.test.js`)
-- Note: The existing test in `App.test.js` is a CRA placeholder and does not match the current app (it looks for "learn react" text that no longer exists)
+- **Mocking**: Use `mock.module()` from `bun:test` (no `__mocks__` directory)
