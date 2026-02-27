@@ -11,14 +11,14 @@ Personal portfolio website for Mark Spicer, deployed to markspicer.me via Netlif
 - **Material-UI (MUI) v6** for UI components
 - **Emotion** for CSS-in-JS styling (via MUI)
 - **p5.js** for generative/interactive art on the homepage
-- **Node v23.1.0** (see `.nvmrc`)
+- **Bun v1.3.9** as the package manager and runtime (see `.bun-version`)
 
 ## Commands
 
 ```bash
-npm start    # Dev server on port 3000
-npm run build  # Production build to /build
-npm test     # Jest test runner (watch mode)
+bun start      # Dev server on port 3000
+bun run build  # Production build to /build
+bun run test   # Jest test runner (watch mode) — use "bun run test" not "bun test"
 ```
 
 There is no separate lint command; ESLint runs through `react-scripts` (config in `package.json` under `eslintConfig`, extends `react-app` and `react-app/jest`). No Prettier or pre-commit hooks are configured.
