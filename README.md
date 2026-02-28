@@ -6,16 +6,44 @@ My personal website ✨ Check out the live version at [markspicer.me](https://ma
 
 ![social banner](./public/social.png)
 
+## Prerequisites
+
+This project uses [Bun](https://bun.sh) as its package manager and runtime.
+
+To install Bun:
+```
+curl -fsSL https://bun.sh/install | bash
+```
+
 ## Develop
-First, install the dependencies:
 
+Install dependencies:
 ```
-npm i
-```
-
-Then run the development server:
-```
-npm run start
+bun install
 ```
 
-This will automatically open a browser window at [http://localhost:3000/](http://localhost:3000/)
+Start the development server:
+```
+bun dev
+```
+
+The dev server runs at [http://localhost:3000/](http://localhost:3000/).
+
+## Build
+
+Create a production build:
+```
+bun run build
+```
+
+Preview the production build locally:
+```
+bun run preview
+```
+
+## Test
+
+Run tests:
+```
+bun test
+```
