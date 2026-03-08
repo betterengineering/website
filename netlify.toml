@@ -1,5 +1,5 @@
 [build]
-  command = "bun run build"
+  command = "VITE_SITE_URL=$DEPLOY_PRIME_URL bun run build"
   publish = "build"
 
 [build.environment]
