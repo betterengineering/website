@@ -53,18 +53,19 @@ const frameInnerSx = {
 };
 
 // Placeholder photos - replace src with actual photo paths
-// Add your photos here: { src: '/photos/filename.jpg', description: 'Caption text' }
+// Add your photos here: { src: '/photos/filename.jpg', description: 'Caption text', span: 1 }
 // Place image files in public/photos/
+// span: 1 = single column, 2 = double wide, 3 = full width (out of 3 columns)
 const photos = [
-    { src: '/photos/gallery-1.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-2.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-3.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-4.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-5.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-6.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-7.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-8.jpg', description: 'Placeholder — replace with your photos' },
-    { src: '/photos/gallery-9.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-1.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-2.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-3.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-7.jpg', description: 'Placeholder — replace with your photos', span: 3 },
+    { src: '/photos/gallery-8.jpg', description: 'Placeholder — replace with your photos', span: 2 },
+    { src: '/photos/gallery-5.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-4.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-9.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-6.jpg', description: 'Placeholder — replace with your photos', span: 1 },
 ];
 
 const arrowSx = {
@@ -139,15 +140,14 @@ function Lightbox({ index, onClose, onPrev, onNext }) {
     );
 }
 
-function FramedPhoto({ src, description, onClick }) {
+function FramedPhoto({ src, description, onClick, span = 1 }) {
     return (
-        <Box sx={{ breakInside: 'avoid', mb: 3 }}>
+        <Box sx={{ gridColumn: { xs: 'span 1', sm: `span ${Math.min(span, 2)}`, md: `span ${span}` } }}>
             <Box sx={{ ...frameOuterSx, cursor: 'pointer' }} onClick={onClick}>
                 <Box sx={frameInnerSx}>
                     <img src={src} alt={description} />
                 </Box>
             </Box>
-            <Typography sx={captionSx}>{description}</Typography>
         </Box>
     );
 }
@@ -159,7 +159,7 @@ function Photography() {
     const goNext = useCallback(() => setLightboxIndex((i) => (i + 1) % photos.length), []);
 
     return (
-        <Container maxWidth="md" sx={{ pt: 12, pb: 8 }}>
+        <Container maxWidth="lg" sx={{ pt: 12, pb: 8 }}>
             {lightboxIndex !== null && (
                 <Lightbox
                     index={lightboxIndex}
@@ -169,7 +169,7 @@ function Photography() {
                 />
             )}
             <Typography variant="h4" sx={{ color: '#000', mb: 3, fontWeight: 'bold' }}>
-                Photography
+                Analog Photography
             </Typography>
             <Typography sx={descriptionSx}>
                 I shoot analog film, almost exclusively black and white. There's something
@@ -182,9 +182,15 @@ function Photography() {
 
             <Typography sx={{ ...sectionHeaderSx, mb: 4 }}>Gallery</Typography>
 
-            <Box sx={{ columnCount: { xs: 1, sm: 2, md: 3 }, columnGap: 3 }}>
+            <Box sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
+                gridAutoFlow: 'dense',
+                alignItems: 'start',
+                gap: 3,
+            }}>
                 {photos.map((photo, i) => (
-                    <FramedPhoto key={i} src={photo.src} description={photo.description} onClick={() => setLightboxIndex(i)} />
+                    <FramedPhoto key={i} src={photo.src} description={photo.description} span={photo.span} onClick={() => setLightboxIndex(i)} />
                 ))}
             </Box>
 
