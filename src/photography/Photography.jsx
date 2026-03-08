@@ -57,15 +57,15 @@ const frameInnerSx = {
 // Place image files in public/photos/
 // span: 1 = single column, 2 = double wide, 3 = full width (out of 3 columns)
 const photos = [
-    { src: '/photos/gallery-1.jpg', description: 'Placeholder — replace with your photos', span: 1 },
-    { src: '/photos/gallery-2.jpg', description: 'Placeholder — replace with your photos', span: 1 },
-    { src: '/photos/gallery-3.jpg', description: 'Placeholder — replace with your photos', span: 1 },
-    { src: '/photos/gallery-7.jpg', description: 'Placeholder — replace with your photos', span: 3 },
-    { src: '/photos/gallery-8.jpg', description: 'Placeholder — replace with your photos', span: 2 },
-    { src: '/photos/gallery-5.jpg', description: 'Placeholder — replace with your photos', span: 1 },
-    { src: '/photos/gallery-4.jpg', description: 'Placeholder — replace with your photos', span: 1 },
-    { src: '/photos/gallery-9.jpg', description: 'Placeholder — replace with your photos', span: 1 },
-    { src: '/photos/gallery-6.jpg', description: 'Placeholder — replace with your photos', span: 1 },
+    { src: '/photos/gallery-1.jpg', description: 'Astoria Pool shot on Ilford HP5 Plus. This is from the first roll I developed and scanned myself 🤓', span: 1 },
+    { src: '/photos/gallery-2.jpg', description: 'Red Hook Dock, Kodak TMax 400', span: 1 },
+    { src: '/photos/gallery-3.jpg', description: 'Green-Wood Cemetery, Kodak Gold 200', span: 1 },
+    { src: '/photos/gallery-7.jpg', description: 'Anable Basin, Kodak Portra 800', span: 3 },
+    { src: '/photos/gallery-8.jpg', description: '18th Street between 5th and 6th, or thereabouts, Ilford HP5 Plus', span: 2 },
+    { src: '/photos/gallery-5.jpg', description: 'Camp St Malo Cathedral. Ilford HP5 Plus', span: 1 },
+    { src: '/photos/gallery-4.jpg', description: 'New York Times Building, Ilford HP5 Plus', span: 1 },
+    { src: '/photos/gallery-9.jpg', description: 'Joshua Tree National Park, right as the sun was setting. Ilford HP5 Plus', span: 1 },
+    { src: '/photos/gallery-6.jpg', description: 'Arches National Park. Fujifilm 400', span: 1 },
 ];
 
 const arrowSx = {
@@ -172,10 +172,7 @@ function Photography() {
                 Analog Photography
             </Typography>
             <Typography sx={descriptionSx}>
-                I shoot analog film, almost exclusively black and white. There's something
-                about the deliberate process of film photography — the patience of manual
-                focus, the constraint of 36 frames, the anticipation of development — that
-                makes each frame feel intentional. I develop and scan at home.
+                {"I'm a hobbyist photographer shooting 35mm and medium format film. My main camera is a Nikon F3 from 1986, but I can also be found with a Rolleicord III from 1951 or a Kodak S Series from 1993. I've developed, scanned, and enlarged some photos in a darkroom myself but I typically rely on a lab. If you want to chat photography, use my images, or offer feedback you can email me at "}<Box component="a" href="mailto:mark@markspicer.me" sx={{ color: '#333' }}>mark@markspicer.me</Box>.
             </Typography>
 
             <Divider sx={{ my: 5, borderColor: '#ccc' }} />
