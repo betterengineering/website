@@ -47,3 +47,9 @@ Run tests:
 ```
 bun test
 ```
+
+## License
+
+The source code in this repository is licensed under the [MIT License](LICENSE).
+
+Photographs and other media assets are **© Mark Spicer, All Rights Reserved** and may not be used, copied, or distributed without permission.

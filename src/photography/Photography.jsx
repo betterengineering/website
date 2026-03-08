@@ -121,6 +121,10 @@ function Photography() {
                     Photos coming soon.
                 </Typography>
             )}
+
+            <Typography sx={{ color: '#999', fontSize: '0.75rem', mt: 6, textAlign: 'center' }}>
+                All photographs © Mark Spicer. All rights reserved.
+            </Typography>
         </Container>
     );
 }
