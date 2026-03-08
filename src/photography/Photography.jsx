@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -62,10 +62,49 @@ const photos = [
     { src: 'https://picsum.photos/seed/film4/800/600', description: 'Placeholder — replace with your photos' },
 ];
 
-function FramedPhoto({ src, description }) {
+function Lightbox({ src, description, onClose }) {
+    useEffect(() => {
+        const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+        document.addEventListener('keydown', handleKey);
+        return () => document.removeEventListener('keydown', handleKey);
+    }, [onClose]);
+
+    return (
+        <Box
+            onClick={onClose}
+            sx={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 9999,
+                backgroundColor: 'rgba(0,0,0,0.9)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+            }}
+        >
+            <Box
+                component="img"
+                src={src}
+                alt={description}
+                sx={{
+                    maxWidth: '90vw',
+                    maxHeight: '85vh',
+                    objectFit: 'contain',
+                }}
+            />
+            <Typography sx={{ color: '#ccc', fontSize: '0.85rem', mt: 2 }}>
+                {description}
+            </Typography>
+        </Box>
+    );
+}
+
+function FramedPhoto({ src, description, onClick }) {
     return (
         <Box sx={{ flex: '1 1 0', minWidth: 0 }}>
-            <Box sx={frameOuterSx}>
+            <Box sx={{ ...frameOuterSx, cursor: 'pointer' }} onClick={onClick}>
                 <Box sx={frameInnerSx}>
                     <img src={src} alt={description} />
                 </Box>
@@ -76,6 +115,9 @@ function FramedPhoto({ src, description }) {
 }
 
 function Photography() {
+    const [lightboxPhoto, setLightboxPhoto] = useState(null);
+    const closeLightbox = useCallback(() => setLightboxPhoto(null), []);
+
     // Group photos into rows of 2
     const rows = [];
     for (let i = 0; i < photos.length; i += 2) {
@@ -84,6 +126,13 @@ function Photography() {
 
     return (
         <Container maxWidth="md" sx={{ pt: 12, pb: 8 }}>
+            {lightboxPhoto && (
+                <Lightbox
+                    src={lightboxPhoto.src}
+                    description={lightboxPhoto.description}
+                    onClose={closeLightbox}
+                />
+            )}
             <Typography variant="h4" sx={{ color: '#000', mb: 3, fontWeight: 'bold' }}>
                 Photography
             </Typography>
@@ -109,7 +158,7 @@ function Photography() {
                     }}
                 >
                     {row.map((photo, j) => (
-                        <FramedPhoto key={j} src={photo.src} description={photo.description} />
+                        <FramedPhoto key={j} src={photo.src} description={photo.description} onClick={() => setLightboxPhoto(photo)} />
                     ))}
                     {/* If odd number, add empty spacer to maintain layout */}
                     {row.length === 1 && <Box sx={{ flex: '1 1 0', minWidth: 0 }} />}
