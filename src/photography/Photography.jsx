@@ -56,18 +56,44 @@ const frameInnerSx = {
 // Add your photos here: { src: '/photos/filename.jpg', description: 'Caption text' }
 // Place image files in public/photos/
 const photos = [
-    { src: 'https://picsum.photos/seed/film1/800/600', description: 'Placeholder — replace with your photos' },
-    { src: 'https://picsum.photos/seed/film2/800/600', description: 'Placeholder — replace with your photos' },
-    { src: 'https://picsum.photos/seed/film3/800/600', description: 'Placeholder — replace with your photos' },
-    { src: 'https://picsum.photos/seed/film4/800/600', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-1.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-2.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-3.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-4.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-5.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-6.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-7.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-8.jpg', description: 'Placeholder — replace with your photos' },
+    { src: '/photos/gallery-9.jpg', description: 'Placeholder — replace with your photos' },
 ];
 
-function Lightbox({ src, description, onClose }) {
+const arrowSx = {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    color: '#fff',
+    fontSize: '3rem',
+    cursor: 'pointer',
+    userSelect: 'none',
+    opacity: 0.7,
+    transition: 'opacity 0.2s',
+    '&:hover': { opacity: 1 },
+    px: 2,
+    py: 4,
+};
+
+function Lightbox({ index, onClose, onPrev, onNext }) {
+    const photo = photos[index];
+
     useEffect(() => {
-        const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+        const handleKey = (e) => {
+            if (e.key === 'Escape') onClose();
+            if (e.key === 'ArrowLeft') onPrev();
+            if (e.key === 'ArrowRight') onNext();
+        };
         document.addEventListener('keydown', handleKey);
         return () => document.removeEventListener('keydown', handleKey);
-    }, [onClose]);
+    }, [onClose, onPrev, onNext]);
 
     return (
         <Box
@@ -85,25 +111,37 @@ function Lightbox({ src, description, onClose }) {
             }}
         >
             <Box
+                onClick={(e) => { e.stopPropagation(); onPrev(); }}
+                sx={{ ...arrowSx, left: { xs: 4, md: 24 } }}
+            >
+                ‹
+            </Box>
+            <Box
                 component="img"
-                src={src}
-                alt={description}
+                src={photo.src}
+                alt={photo.description}
                 sx={{
-                    maxWidth: '90vw',
+                    maxWidth: '80vw',
                     maxHeight: '85vh',
                     objectFit: 'contain',
                 }}
             />
             <Typography sx={{ color: '#ccc', fontSize: '0.85rem', mt: 2 }}>
-                {description}
+                {photo.description}
             </Typography>
+            <Box
+                onClick={(e) => { e.stopPropagation(); onNext(); }}
+                sx={{ ...arrowSx, right: { xs: 4, md: 24 } }}
+            >
+                ›
+            </Box>
         </Box>
     );
 }
 
 function FramedPhoto({ src, description, onClick }) {
     return (
-        <Box sx={{ flex: '1 1 0', minWidth: 0 }}>
+        <Box sx={{ breakInside: 'avoid', mb: 3 }}>
             <Box sx={{ ...frameOuterSx, cursor: 'pointer' }} onClick={onClick}>
                 <Box sx={frameInnerSx}>
                     <img src={src} alt={description} />
@@ -115,22 +153,19 @@ function FramedPhoto({ src, description, onClick }) {
 }
 
 function Photography() {
-    const [lightboxPhoto, setLightboxPhoto] = useState(null);
-    const closeLightbox = useCallback(() => setLightboxPhoto(null), []);
-
-    // Group photos into rows of 2
-    const rows = [];
-    for (let i = 0; i < photos.length; i += 2) {
-        rows.push(photos.slice(i, i + 2));
-    }
+    const [lightboxIndex, setLightboxIndex] = useState(null);
+    const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+    const goPrev = useCallback(() => setLightboxIndex((i) => (i - 1 + photos.length) % photos.length), []);
+    const goNext = useCallback(() => setLightboxIndex((i) => (i + 1) % photos.length), []);
 
     return (
         <Container maxWidth="md" sx={{ pt: 12, pb: 8 }}>
-            {lightboxPhoto && (
+            {lightboxIndex !== null && (
                 <Lightbox
-                    src={lightboxPhoto.src}
-                    description={lightboxPhoto.description}
+                    index={lightboxIndex}
                     onClose={closeLightbox}
+                    onPrev={goPrev}
+                    onNext={goNext}
                 />
             )}
             <Typography variant="h4" sx={{ color: '#000', mb: 3, fontWeight: 'bold' }}>
@@ -147,23 +182,11 @@ function Photography() {
 
             <Typography sx={{ ...sectionHeaderSx, mb: 4 }}>Gallery</Typography>
 
-            {rows.map((row, i) => (
-                <Box
-                    key={i}
-                    sx={{
-                        display: 'flex',
-                        gap: { xs: 3, md: 5 },
-                        mb: 5,
-                        flexDirection: { xs: 'column', sm: 'row' },
-                    }}
-                >
-                    {row.map((photo, j) => (
-                        <FramedPhoto key={j} src={photo.src} description={photo.description} onClick={() => setLightboxPhoto(photo)} />
-                    ))}
-                    {/* If odd number, add empty spacer to maintain layout */}
-                    {row.length === 1 && <Box sx={{ flex: '1 1 0', minWidth: 0 }} />}
-                </Box>
-            ))}
+            <Box sx={{ columnCount: { xs: 1, sm: 2, md: 3 }, columnGap: 3 }}>
+                {photos.map((photo, i) => (
+                    <FramedPhoto key={i} src={photo.src} description={photo.description} onClick={() => setLightboxIndex(i)} />
+                ))}
+            </Box>
 
             {photos.length === 0 && (
                 <Typography sx={{ color: '#999', fontStyle: 'italic' }}>
