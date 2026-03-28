@@ -1,6 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import P5 from 'p5';
+P5.disableFriendlyErrors = true;
 import Box from '@mui/material/Box';
 
 const STEP = 16;
