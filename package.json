@@ -18,7 +18,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "bun test"
+    "test": "bun test",
+    "build:resume": "bun resume/build.js"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.7.0",
