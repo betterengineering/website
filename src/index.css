@@ -22,6 +22,10 @@ h1 {
   color: #A9FBD7;
 }
 
+canvas {
+  touch-action: pan-y !important;
+}
+
 noscript {
   color: #A9FBD7;
   background-color: #00203F;
