@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
@@ -47,6 +47,14 @@ function Header({ variant = 'dark' }) {
     const bg = isLight ? '#fff' : colors.darkBlue;
     const fg = isLight ? '#000' : colors.teal;
     const gradientTo = isLight ? 'rgba(255,255,255,0)' : 'transparent';
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && open) setOpen(false);
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [open]);
 
     const handleNavigation = (to) => {
         setOpen(false);
