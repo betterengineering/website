@@ -1,0 +1,110 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=0.5in,top=0.4in,bottom=0.4in]{geometry}
+\usepackage{fontspec}
+\setmainfont{CutiveMono-Regular.ttf}[Path=./, AutoFakeBold=1.5]
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\newcommand{\uhref}[2]{\href{#1}{\uline{#2}}}
+
+% Kill all paragraph spacing
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+
+% Black and white color scheme
+\definecolor{mygray}{HTML}{666666}
+
+% Hyperlink styling
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+}
+
+% Section formatting
+\titleformat{\section}
+    {\bfseries\small}
+    {}
+    {0em}
+    {\MakeUppercase}
+    [\vspace{0.2em}{\color{black!20}\hrule height 0.4pt}]
+
+\titlespacing*{\section}{0pt}{1.5em}{0.5em}
+
+% Remove page numbers
+\pagestyle{empty}
+
+\begin{document}
+
+% Header
+{\LARGE\bfseries Mark Spicer}\par
+\vspace{1pt}
+{\footnotesize\color{mygray} Aim high, ship fast, embrace pragmatism}\par
+\vspace{1pt}
+{\footnotesize\color{mygray}%
+\href{https://github.com/betterengineering}{github.com/betterengineering} \quad
+\href{https://www.linkedin.com/in/markspicerjr/}{linkedin.com/in/markspicerjr} \quad
+\href{mailto:mark@markspicer.me}{mark@markspicer.me}%
+}\par
+
+\section{Introduction}
+{\footnotesize I get stuff done. I have a decade of software experience and take pride in being a generalist. I've held roles building product, platforms, and infrastructure which gives me a deep understanding of what it takes to ship great software. I've worked at companies ranging from 3 to 30,000 engineers and feel comfortable operating anywhere in between. I'm most happy working with a small group of smart, driven, and empathetic humans to deliver something impactful.}
+
+\section{Experience}
+
+\newcommand{\company}[3]{%
+    \vspace{8pt}%
+    {\small\bfseries #1\hfill{\footnotesize\color{mygray}#3}}\par\nobreak
+    \if\relax\detokenize{#2}\relax\else{\footnotesize\color{mygray}#2}\par\nobreak\fi
+}
+\newcommand{\role}[2]{%
+    \vspace{5pt}%
+    {\footnotesize\itshape #1\hfill\color{mygray}#2}\par\nobreak
+}
+\newcommand{\resumebullet}[1]{%
+    \vspace{1pt}%
+    \begingroup\footnotesize\color{black!85}%
+    \leftskip=1.8em\parindent=-0.8em%
+    \indent> #1\par
+    \endgroup
+}
+
+\company{\href{https://www.datadoghq.com}{Datadog}}{}{Dec 2024 -- Present}
+\role{Senior Software Engineer, APM}{}
+\resumebullet{I am currently working on APM Onboarding through \uhref{https://docs.datadoghq.com/tracing/trace_collection/automatic_instrumentation/single-step-apm/kubernetes}{Single Step Instrumentation}.}
+
+\company{\href{https://www.squarespace.com}{Squarespace}}{}{Oct 2023 -- Dec 2024}
+\role{Senior Software Engineer, Websites}{}
+\resumebullet{I rebuilt the Squarespace \uhref{https://developers.squarespace.com/quick-start}{developer mode} feature using GitHub. I meet with our customers regularly to help them migrate to the new feature, which enabled the company to decommission legacy hardware that powered the platform for over a decade.}
+
+\company{\href{https://tidbyt.com}{Tidbyt}}{}{Jun 2021 -- Oct 2023}
+\role{Founding Software Engineer}{}
+\resumebullet{I worked in a team of four to bring the \uhref{https://tidbyt.com/products/tidbyt}{Tidbyt product} to market and scale adoption to 35,000 devices. I did a little bit of everything, including: customer support, marketing, business forecasting, building major features, sourcing screws, scaling our backend, and building a developer community.}
+
+\company{\href{https://about.meta.com}{Facebook}}{}{Nov 2019 -- Jun 2021}
+\role{Production Engineer, Artificial Intelligence}{}
+\resumebullet{I worked on AI infrastructure, mostly focused on release engineering. The AI training framework I supported powered some of the company's largest models including ads and the Facebook newsfeed. I optimized the build speed, stabilized the test suites, and facilitated independent binary releases.}
+
+\company{\href{https://www.squarespace.com}{Squarespace}}{}{Jun 2016 -- Nov 2019}
+\role{Senior Software Engineer, Backend}{Jan 2019 -- Nov 2019}
+\resumebullet{I did some great backend work in this role. I made it possible to dynamically update the CMS frontend without deploying the backend. I setup a new CDN using Google Cloud to host static assets so they no longer were hosted on NFS. I moved the CMS backend to Kubernetes and off of home grown deployment and provisioning software.}
+
+\role{Software Engineer, Backend}{Mar 2018 -- Jan 2019}
+\resumebullet{I fixed a lot of the pain points I discovered as an SRE in this role. The biggest impact was converting the hard coded, Java class based configuration system to a YAML based system that enabled faster resolution in production. I also migrated the metrics and alerts off of legacy systems onto Prometheus and Alertmanager which later enabled the Kubernetes migration.}
+
+\role{Site Reliability Engineer}{Jun 2016 -- Mar 2018}
+\resumebullet{I really cut my teeth as an on-call in this role, participating in a rotation covering the entire Squarespace platform. I conducted over 50 interviews for SRE roles as we scaled out the team. I worked with a squad to build out bare metal Kubernetes clusters. I worked with a backend team to migrate the first microservice to Kubernetes. I deployed a new CI/CD system that was configured via code instead of a UI. I worked on a special project to handle traffic for the \uhref{https://youtu.be/W3FH1scDhfA}{Super Bowl 2018 Commercial} featuring Keanu Reeves.}
+
+\company{\href{https://www.spotify.com}{Spotify}}{}{Jun 2015 -- Aug 2015}
+\role{Site Reliability Engineer, Intern}{}
+\resumebullet{I built a proof of concept for self-healing infrastructure to understand if automated health checks could reduce toil for the team.}
+
+\section{Education}
+
+\company{\href{https://www.rit.edu}{Rochester Institute of Technology}}{}{Aug 2012 -- May 2016}
+\role{Bachelor of Science}{}
+\resumebullet{Double major in Networking and Systems Administration / Computing Security}
+
+\end{document}

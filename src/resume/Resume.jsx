@@ -4,7 +4,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import Download from '@mui/icons-material/Download';
 import { colors } from '../colors';
 
 const sectionHeaderSx = {
@@ -121,6 +123,23 @@ function Resume() {
                             linkedin.com/in/markspicerjr
                         </Link>
                     </Box>
+                    <Button
+                        variant="outlined"
+                        size="small"
+                        href="/assets/mark-spicer-resume.pdf"
+                        download
+                        startIcon={<Download />}
+                        sx={{
+                            mt: 2,
+                            color: colors.teal,
+                            borderColor: colors.teal,
+                            '&:hover': { borderColor: colors.teal, opacity: 0.8 },
+                            textTransform: 'none',
+                            fontSize: '0.85rem',
+                        }}
+                    >
+                        Download PDF
+                    </Button>
                 </Box>
 
                 <Divider sx={dividerSx} />

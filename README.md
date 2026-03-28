@@ -41,6 +41,21 @@ Preview the production build locally:
 bun run preview
 ```
 
+## Resume
+
+The PDF resume is built from LaTeX source in the `resume/` directory. It requires [Tectonic](https://tectonic-typesetting.github.io/), a modern LaTeX engine:
+
+```
+brew install tectonic
+```
+
+Build the resume PDF:
+```
+bun run build:resume
+```
+
+This outputs `public/assets/mark-spicer-resume.pdf`.
+
 ## Test
 
 Run tests:
