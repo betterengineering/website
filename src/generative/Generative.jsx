@@ -43,7 +43,6 @@ function Generative() {
                 const height = containerRef.current.clientHeight * 0.8;
                 const cnv = p5.createCanvas(width, height);
                 cnv.parent(canvasParentRef);
-
                 p5.stroke(169, 251, 215);
                 p5.strokeWeight(2);
                 p5.frameRate(30);
@@ -85,6 +84,10 @@ function Generative() {
                     p5.endShape();
                 }
             };
+
+            // Allow touch scrolling past the canvas
+            p5.touchStarted = () => true;
+            p5.touchMoved = () => true;
 
             p5.windowResized = () => {
                 const width = containerRef.current.clientWidth;
